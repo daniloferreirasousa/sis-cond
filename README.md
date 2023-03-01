@@ -17,3 +17,17 @@ Início da criação: 28/02/2023
 
 ### Atividades dia 01 MAR 2023
 > - Criação da Migration 'create_all_tables', a qual faz a criação de todas as tabelas utilizadas pelo sistema
+> - Criação dos seguintes models: 
+>> - Area
+>> - AreaDisabledDay
+>> - Billet
+>> - Doc 
+>> - FondAndLost
+>> - Reservation
+>> - Unit
+>> - UnitPeople
+>> - UnitPet
+>> - UnitVehicle
+>> - Wall
+>> - WallLike
+>> - Warning
