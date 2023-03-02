@@ -9,7 +9,7 @@ class UnitPeople extends Model
 {
     use HasFactory;
 
-    protected $hiden = [
+    protected $hidden = [
         'id-unit'
     ];
 

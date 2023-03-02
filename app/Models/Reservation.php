@@ -9,7 +9,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    protected $hiden = [
+    protected $hidden = [
         'id_unit'
     ];
 

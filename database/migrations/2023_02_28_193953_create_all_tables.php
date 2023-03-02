@@ -73,13 +73,6 @@ return new class extends Migration
             $table->string('file_url');
         });
 
-        Schema::create('billets', function(Blueprint $table){
-            $table->id();
-            $table->integer('id_unit');
-            $table->string('title');
-            $table->string('file_url');
-        });
-
         Schema::create('warnings', function(Blueprint $table){
             $table->id();
             $table->integer('id_unit');
@@ -92,7 +85,7 @@ return new class extends Migration
         Schema::create('fondandlost', function(Blueprint $table){
             $table->id();
             $table->string('status')->default('LOST'); // LOST, RECOVERED
-            $table->strind('photo'); //foto.jpg,foto2.jpg
+            $table->string('photo'); //foto.jpg,foto2.jpg
             $table->string('description');
             $table->string('where');
             $table->date('date_created');
@@ -138,7 +131,7 @@ return new class extends Migration
         Schema::dropIfExists('docs');
         Schema::dropIfExists('billets');
         Schema::dropIfExists('warnings');
-        Schema::dropIfExists('fondandlost');
+        Schema::dropIfExists('foundandlost');
         Schema::dropIfExists('areas');
         Schema::dropIfExists('areadisableddays');
         Schema::dropIfExists('reservations');
