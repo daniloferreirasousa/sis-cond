@@ -80,4 +80,4 @@ Início da criação: 28/02/2023
 > - Criação do método de logout da rota 'logout'
 > - Criação do Seeder 'DatabaseSeeder.php' para inserir dados de teste no banco de dados
 > - Criação do Link do Storage para ser utilizado na pasta Public do sistema
-> - 
+> - Criação do método walls da rota 'walls'
