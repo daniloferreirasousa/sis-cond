@@ -81,3 +81,12 @@ Início da criação: 28/02/2023
 > - Criação do Seeder 'DatabaseSeeder.php' para inserir dados de teste no banco de dados
 > - Criação do Link do Storage para ser utilizado na pasta Public do sistema
 > - Criação do método walls da rota 'walls'
+
+
+### Atividades do dia 05 MAR 23
+> #### Criação do método 'like' no 'WallController', função para dar like em um Aviso
+> #### Criação do método 'getAll' no 'DocController', pega todos os documentos relacioandos ao condomínio
+> #### Criação do método 'getAll' no 'BilletController', pega todos os boletos da unidade que o usuário possui
+> #### Criação do método 'getMyWarnings' no WarningController', função para pegar todas as ocorrências do usuário
+> #### Criação do método 'setWarning' no 'WarningController', função para adicionar uma ocorrência com ou sem fotos
+> #### Criação do método 'addWarningFile' no WarningController', função para adicionar fotos a uma ocorrência
