@@ -53,7 +53,11 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/unit/{id}/addvehicle', [UnitController::class, 'addVehicle']);
     Route::post('/unit/{id}/addpet', [UnitController::class, 'addPet']);
     Route::post('/unit/{id}/removeperson', [UnitController::class, 'removePerson']);
+<<<<<<< HEAD
     Route::post('/unit/{id}/removevehicle', [UnitController::class, 'rmeoveVehicle']);
+=======
+    Route::post('/unit/{id}/removevehicle', [UnitController::class, 'removeVehicle']);
+>>>>>>> 9b7245c3015a7fe3502b9870cadfe8627d877d83
     Route::post('/unit/{id}/removepet', [UnitController::class, 'removePet']);
 
     // Reservas

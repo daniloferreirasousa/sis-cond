@@ -10,7 +10,7 @@ class UnitPeople extends Model
     use HasFactory;
 
     protected $hidden = [
-        'id-unit'
+        'id_unit'
     ];
 
     public $timestamps = false;
