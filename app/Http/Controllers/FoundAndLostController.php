@@ -14,22 +14,6 @@ class FoundAndLostController extends Controller
     {
         $array = ['error' => ''];
 
-<<<<<<< HEAD
-        return $array;
-    }
-
-    public function insert(): array
-    {
-        $array = ['error' => ''];
-
-        return $array;
-    }
-
-    public function update(): array
-    {
-        $array = ['error' => ''];
-
-=======
         $lost = FoundAndLost::where('status', 'LOST')
             ->orderBy('date_created', 'DESC')
             ->orderBy('id', 'DESC')
@@ -109,7 +93,6 @@ class FoundAndLostController extends Controller
             return $array;
         }
         
->>>>>>> 9b7245c3015a7fe3502b9870cadfe8627d877d83
         return $array;
     }
 }

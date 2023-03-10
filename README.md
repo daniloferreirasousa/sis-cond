@@ -90,3 +90,15 @@ Início da criação: 28/02/2023
 > #### Criação do método 'getMyWarnings' no WarningController', função para pegar todas as ocorrências do usuário
 > #### Criação do método 'setWarning' no 'WarningController', função para adicionar uma ocorrência com ou sem fotos
 > #### Criação do método 'addWarningFile' no WarningController', função para adicionar fotos a uma ocorrência
+
+
+### Atividades realizadas no dia 10 de MAR de 2023
+> #### Criação dos métodos abaixo no Controller UnitController
+>> - addPerson
+>> - addVehicle
+>> - addPet
+>> - removePerson
+>> - removeVehicle
+>> - removePet
+> #### Criação dos métodos abaixo no Controller ReservationController
+>> - getReservations
