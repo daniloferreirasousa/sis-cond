@@ -61,7 +61,7 @@ class WarningController extends Controller
         ]);
 
         if(!$validator->fails()) {
-            $file = $r->file('photo')->store('storage');
+            $file = $r->file('photo')->store('public');
 
             $array['photo'] = asset(Storage::url($file));
         } else {
@@ -73,7 +73,7 @@ class WarningController extends Controller
     } // End addWarningFile
 
 
-    public function setWarning(): array
+    public function setWarning(Request $r): array
     {
         $array = ['error' => ''];
         
@@ -91,12 +91,11 @@ class WarningController extends Controller
             $newWarn = new Warning();
             $newWarn->title = $title;
             $newWarn->id_unit = $property;
-            $newWarn->status = 'IN_REVIEW';
+            $newWarn->status = 'IN_REVIEW'; // Valor padrão
             $newWarn->date_created = date('Y-m-d');
 
             if($list && is_array($list)) {
                 $photos = [];
-
                 foreach($list as $listItem) {
                     $url = explode(',', $listItem);
                     $photos = end($url);
@@ -106,6 +105,7 @@ class WarningController extends Controller
                 $newWarn->photos = '';
             }
             $newWarn->save();
+            $array['error'] = 'Ocorrência criada com sucesso.';
         } else {
             $array['error'] = $validator->errors()->first();
         }

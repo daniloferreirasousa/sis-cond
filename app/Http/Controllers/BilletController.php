@@ -30,6 +30,10 @@ class BilletController extends Controller
                     $billets[$billetKey]['file_url'] = asset('storage/'.$billetValue['file_url']);
                 }
                 
+                if($billets->count() == 0) {
+                    $array['error'] = "Nenhum boleto encontrado para essa unidade.";
+                }
+
                 $array['list'] = $billets;
             } else {
                 $array['error'] = 'Essa unidade não pertence a você.';
