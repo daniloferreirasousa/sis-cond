@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('users')->insert([
+            'name' => 'Danilo Ferreira',
+            'email' => 'suporte@dn.com',
+            'cpf'  => '12345678911',
+            'password' => password_hash('1234', PASSWORD_DEFAULT)
+        ]);
         DB::table('units')->insert([
             'name'     => 'APT 100',
             'id_owner' => '1'

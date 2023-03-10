@@ -82,7 +82,7 @@ return new class extends Migration
             $table->text('photos'); //foto.jpg,foto2.jpg,foto3,jpg,foto4.jpg
         });
 
-        Schema::create('fondandlost', function(Blueprint $table){
+        Schema::create('foundandlost', function(Blueprint $table){
             $table->id();
             $table->string('status')->default('LOST'); // LOST, RECOVERED
             $table->string('photo'); //foto.jpg,foto2.jpg
