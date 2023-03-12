@@ -92,7 +92,7 @@ Início da criação: 28/02/2023
 > #### Criação do método 'addWarningFile' no WarningController', função para adicionar fotos a uma ocorrência
 
 
-### Atividades realizadas no dia 10 de MAR de 2023
+### Atividades realizadas no dia 10 MAR 2023
 > #### Criação dos métodos abaixo no Controller UnitController
 >> - addPerson
 >> - addVehicle
@@ -102,3 +102,8 @@ Início da criação: 28/02/2023
 >> - removePet
 > #### Criação dos métodos abaixo no Controller ReservationController
 >> - getReservations
+
+
+### Atividades realizadas no dia 12 MAR 2023
+> ### Criação do método 'setReservation' no 'ReservationController'
+
