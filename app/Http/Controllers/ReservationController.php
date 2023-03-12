@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Reservation;
 use App\Models\Area;
@@ -72,10 +73,7 @@ class ReservationController extends Controller
                 'dates' => $dates
             ];
         }
-
-
-        $array['list'] = $areas;
-
+        
         return $array;
     }
 
