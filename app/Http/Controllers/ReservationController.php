@@ -73,7 +73,7 @@ class ReservationController extends Controller
                 'dates' => $dates
             ];
         }
-        
+
         return $array;
     }
 
@@ -162,19 +162,133 @@ class ReservationController extends Controller
     }
 
     
-    public function getDisabledDates(): array
+    public function getDisabledDates($id): array
     {
-        $array = ['error' => ''];
+        $array = ['error' => '', 'list' => []];
+        $area = Area::find($id);
 
+        if($area) {
+            // Dias disabled padrão
+            $disabledDays = AreaDisabledDay::where('id_area', $id)->get();
+            foreach($disabledDays as $disabledDay) {
+                $array['list'][] = $disabledDay['day'];
+            }
+
+            // Dias disabled através do allowed
+            $allowedDays = explode(',', $area['days']);
+            $offDays = [];
+
+            for($q=0;$q<7;$q++) {
+                if(!in_array($q, $allowedDays)) {
+                    $offDays[] = $q;
+                }
+            }
+
+            // Listar os dias proíbidos 3 meses para frente
+            $start = time();
+            $end = strtotime('+3 months');
+
+            for(
+                $current = $start;
+                $current < $end;
+                $current = strtotime('+1 day', $current)
+            ) {
+                $wd = date('w', $current);
+                if(in_array($wd, $offDays)) {
+                    $array['list'][] = date('Y-m-d', $current);
+                }
+            }
+
+
+
+        } else {
+            $array['error'] = 'Area inexistente';
+            return $array;
+        }
 
         return $array;
     }
 
     
-    public function getTimes(): array
+    public function getTimes($id, Request $r): array
     {
-        $array = ['error' => ''];
+        $array = ['error' => '', 'list' => []];
 
+        $validator = Validator::make($r->all(), [
+            'date' => 'required|date_format:Y-m-d'
+        ]);
+
+        if(!$validator->fails()) {
+            $date = $r->input('date');
+            $area = Area::find($id);
+
+            if($area) {
+                $can = true;
+                // Verificar se é dia desabilitado
+                $existingDisabledDay = AreaDisabledDay::where('id_area', $id)
+                    ->where('day', $date)
+                    ->count();
+                if($existingDisabledDay > 0) {
+                    $can = false;
+                }
+
+                // Verificar se é dia permitido
+                $allowedDays = explode(',', $area['days']);
+                $weekday = date('w', strtotime($date));
+                if(!in_array($weekday, $allowedDays)) {
+                    $can = false;
+                }
+
+                if($can) {
+                    $start = strtotime($area['start_time']);
+                    $end = strtotime($area['end_time']);
+                    $times = [];
+
+                    for(
+                        $lastTime = $start;
+                        $lastTime < $end;
+                        $lastTime = strtotime('+1 hour', $lastTime)
+                    ) {
+                        $times[] = $lastTime;
+                    }
+
+                    $timeList = [];
+                    foreach($times as $time) {
+                        $timeList[] = [
+                            'id' => date("H:i:s", $time),
+                            'title' => date("H:i", strtotime($time)).' - '.date("H:i", strtotime("+1 hour", $time))
+                        ];
+                    }
+
+                    // Removendo as reservas
+                    $reservations = Reservation::where('id_area', $id)
+                        ->whereBetween('reservation_date', [
+                            $date.' 00:00:00',
+                            $date.' 23:59:59'
+                        ])
+                        ->get();
+                    $toRemove = [];
+
+                    foreach($reservations as $reservation) {
+                        $time = date("H:i:s", strtotime($reservation['reservation_date']));
+                        $toRemove[] = $time;
+                    }
+
+                    foreach($timeList as $timeItem) {
+                        if(!in_array($timeItem['id'], $toRemove)) {
+                            $array['list'][] = $timeItem;
+                        }
+                    }
+                }
+            } else {
+                $array['error'] = 'Area inexistente';
+                return $array;
+            }
+
+        } else {
+            $array['error'] = $validator->errors()->first();
+            return $array;
+        }
 
         return $array;
     }

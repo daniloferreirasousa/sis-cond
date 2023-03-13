@@ -105,5 +105,8 @@ Início da criação: 28/02/2023
 
 
 ### Atividades realizadas no dia 12 MAR 2023
-> ### Criação do método 'setReservation' no 'ReservationController'
+> #### Criação do método 'setReservation' no 'ReservationController'
 
+### Atividades realizdas no dia 13 Mar 2023 até as 09:00:00
+> #### Criação do método 'getDisabledDates' no 'ReservationController'
+> #### Criação do método 'getTimes' no 'ReservationController'
