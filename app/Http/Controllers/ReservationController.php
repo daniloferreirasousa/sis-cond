@@ -294,19 +294,79 @@ class ReservationController extends Controller
     }
 
     
-    public function getMyReservations(): array
+    public function getMyReservations(Request $r): array
     {
-        $array = ['error' => ''];
+        $array = ['error' => '', 'list' => []];
+        
+        $validator = Validator::make($r->all(), [
+            'property' => 'required'
+        ]);
+
+        if(!$validator->fails()) {
+            $property = $r->input('property');
+
+            $unit = Unit::find($property);
+            if($unit) {
+                
+                $reservations = Reservation::where('id_unit', $property)
+                    ->orderBy('reservation_date', 'DESC')
+                    ->get();
+                 
+                foreach($reservations as $reservation) {
+                    $area = Area::find($reservation['id_area']);
+
+                    $daterev   = date('d/m/Y H:i', strtotime($reservation['reservation_date']));
+                    $aftertime = date('H:i', strtotime('+1 hour', strtotime($reservation['reservation_date'])));
+                
+                    $daterev .= ' à '.$aftertime;
+
+                    $array['list'][] = [
+                        'id'           => $reservation['id'],
+                        'id_area'      => $reservation['id_area'],
+                        'title'        => $area['title'],
+                        'cover'        =>  asset('storage/'.$area['cover']),
+                        'datereserved' => $daterev
+                    ];
+                }
+
+            } else {
+                $array['error'] = 'Propriedade inexistente';
+                return $array;
+            }
+        } else {
+            $array['error'] = $validator->errors()->first();
+            return $array;
+        }
 
 
         return $array;
     }
 
     
-    public function delMyReservation(): array
+    public function delMyReservation($id): array
     {
         $array = ['error' => ''];
+        
+        $user = auth()->user();
+        $reservation = Reservation::find($id);
 
+        if($reservation) {
+
+            $unit = Unit::where('id', $reservation['id_unit'])
+                ->where('id_owner', $user['id'])
+                ->count();
+
+            if($unit > 0) {
+                Reservation::find($id)->delete();
+                $array['success'] = 'Reserva excluida com sucesso';
+            } else {
+                $array['error'] = 'Essa reserva não é sua';
+                return $array;
+            }
+        } else {
+            $array['error'] = 'Reserva inexistente';
+            return $array;
+        }
         return $array;
     }
 }
