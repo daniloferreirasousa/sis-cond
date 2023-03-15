@@ -1,26 +1,28 @@
 <div class="title">
 
-<h1> API - GESTÃO DE CONDOMÍNIO </h1>
+<h1>API - GESTÃO DE CONDOMÍNIO</h1>
 
 </div> <br/>
 
 <!-- Tecnologias -->
 <div>
 
-# Tecnologias
+<h1>Informações:</h1>
 
 ```
+Versão - 1.0.0
+Author - Danilo Ferreira Sousa
 PHP - ^8.1
 Laravel - ^10.0
 MySQL - ^8.0
 JWT - ^2.0
 ```
+
 </div><br>
 
 <!-- Rotas -->
 <div>
-
-# Rotas da API
+<h1>Rotas da API:</h1>
 <!-- Rotas de Autenticação -->
 <div class="routes">
     <h2> Autenticação </h2> 
@@ -48,7 +50,7 @@ JWT - ^2.0
 
 </div><br>
 
-## Todas as rotas abaixo necescitam do Token JWT de autenticação.
+<h3> Todas as rotas abaixo necescitam do Token JWT de autenticação </h3>
 <!-- Rotas de Avisos -->
 <div class="routes">
     <h2>Avisos</h2>
@@ -177,28 +179,33 @@ JWT - ^2.0
     <h2>Reserva de Área</h2>
     <details>
         <summary>Reservations - Get Reservations</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
-        <p></p>
+        <p>Rota GET: <b>api/reservations</b></p>
+        <p>Responsável por trazer as informações dos locais disponíveis para reserva, juntamente com os horários e dias disponíveis.</p>
     </details>
     <details>
         <summary>Reservation - Set Reservation</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota POST: <b>api/reservation/{id}</b></p>
+        <p>Responsável por criar uma nova Reserva de uma área. Parâmetros necessários: <b>id, date, time, property</b></p>
     </details>
     <details>
         <summary>Reservation - Get Disabled Dates</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota GET: <b>api/reservation/{id}/disabledates</b></p>
+        <p>Responsável por trazer uma lista com todos os dias indisponíveis para reserva dos próximos 3 meses a partir da data atual.</p>
     </details>
     <details>
         <summary>Reservation - Get Times</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota GET: <b>api/reservation/{id}/times</b></p>
+        <p>Responsável por trazer todas as horas disponíveis para reservar do dia atual. Parâmetros necessários: <b>date</b></p>
     </details>
     <details>
         <summary>Reservation - Get My Reservations</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota GET: <b>api/myreservations</b></p>
+        <p>Responsável por trazer todas as reservas da minha unidade. Parâmetros necessários <b>property</b></p>
     </details>
     <details>
         <summary>Reservation - Del My Reservation</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota DELETE: <b>api/foundandlost/{id}</b></p>
+        <p>Responsável por excluir uma reserva que tenha para minha propriedade. Parâmetrosa necessários: <b>id (id da reserva)</b></p>
     </details>
 
 </div><br>
@@ -208,15 +215,47 @@ JWT - ^2.0
     <h2>Usuário</h2>
     <details>
         <summary>User - Get Info</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota GET: <b>api/user</b></p>
+        <p>Reponsável por trazer todas as informações do usuário conectado.</p>
     </details>
     <details>
         <summary>User - Update</summary>
-        <p>Rota POST: <b>api/foundandlost/{id}</b></p>
+        <p>Rota POST: <b>api/user/{id}</b></p>
+        <p>Responsável por atualizar as informações de perfil do usuário conectado. Parâmetros necessários: <b>name, email, cpf</b></p>
     </details>
 
 </div><br>
 
+
+<div>
+<h1> Passos para clone e utilização da API </h1>
+<br>
+<h2>1º Passo:</h2>
+<code>
+git clone https://github.com/daniloferreirasousa/sis-cond.git [name-your-project]
+</code>
+<h2>2º Passo:</h2>
+<code>
+
+</code>
+<h2>3º Passo:</h2>
+<code>
+
+</code>
+<h2>4º Passo:</h2>
+<code>
+
+</code>
+<h2>5º Passo:</h2>
+<code>
+
+</code>
+<h2>6º Passo:</h2>
+<code>
+
+</code>
+
+</div>
 
 
 <!-- Estilização -->
@@ -227,11 +266,17 @@ JWT - ^2.0
     padding: 0px;
     font-family: Verdana, Helvetica, Arial;
 }
+h1, h2 {
+    padding: 0px;
+    margin: 0px;
+}
+
 
 .title {
     display: block;
     text-align:center;
     padding: 10px;
+    font-size: 22px;
 }
 
 .routes {
@@ -243,7 +288,10 @@ JWT - ^2.0
 details summary {
     user-select:none;
     cursor: pointer;
+    color: #bbb;
 }
 
-
+details p {
+    color: #efefef;
+}
 </style>
