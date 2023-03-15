@@ -20,6 +20,49 @@ JWT - ^2.0
 
 </div><br>
 
+<!-- Passo a passo de instalação -->
+<div>
+<h1> Passos para clone e utilização da API </h1>
+<br>
+<h2>1º Passo:</h2>
+
+```
+git clone https://github.com/daniloferreirasousa/sis-cond.git [name-your-project]
+```
+<h2>2º Passo:</h2>
+
+```
+composer update
+```
+<h2>3º Passo:</h2>
+
+``` 
+composer dump-autoload
+```
+<h2>4º Passo:</h2>
+
+```
+Criar uma tabela no DB com o nome que for definido no DB_DATABASE no arquivo .env
+```
+<h2>5º Passo:</h2>
+
+```
+php artisan migrate
+```
+<h2>6º Passo:</h2>
+
+```
+php artisan db-serve
+```
+<h2>7º Passo:</h2>
+
+```
+php artisan serve
+```
+
+</div><br><br>
+
+
 <!-- Rotas -->
 <div>
 <h1>Rotas da API:</h1>
@@ -225,37 +268,6 @@ JWT - ^2.0
     </details>
 
 </div><br>
-
-
-<div>
-<h1> Passos para clone e utilização da API </h1>
-<br>
-<h2>1º Passo:</h2>
-<code>
-git clone https://github.com/daniloferreirasousa/sis-cond.git [name-your-project]
-</code>
-<h2>2º Passo:</h2>
-<code>
-
-</code>
-<h2>3º Passo:</h2>
-<code>
-
-</code>
-<h2>4º Passo:</h2>
-<code>
-
-</code>
-<h2>5º Passo:</h2>
-<code>
-
-</code>
-<h2>6º Passo:</h2>
-<code>
-
-</code>
-
-</div>
 
 
 <!-- Estilização -->
