@@ -11,6 +11,7 @@
 
 ```
 Versão - 1.0.0
+Base: B7Web
 Author - Danilo Ferreira Sousa
 PHP - ^8.1
 Laravel - ^10.0
